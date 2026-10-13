@@ -609,6 +609,7 @@ fish0527/
 │  ├─ App.tsx                 # 決定顯示「輸入代號」還是「聊天室」
 │  │
 │  ├─ components/             # 畫面層：各個畫面元件
+│  │  ├─ common/              # 共用小零件：圖示、頭像、標誌
 │  │  ├─ JoinScreen/          # 代號輸入畫面
 │  │  ├─ ChatRoom/            # 聊天室主畫面
 │  │  ├─ MessageList/         # 訊息列表與捲動行為
