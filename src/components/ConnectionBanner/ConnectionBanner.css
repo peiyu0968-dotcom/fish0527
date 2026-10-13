@@ -1,0 +1,35 @@
+.conn {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.conn--warn {
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}
+
+.conn--error {
+  padding-block: 8px;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.conn__text {
+  flex: 1;
+}
+
+.conn__retry {
+  height: 44px;
+  padding: 0 18px;
+  background: transparent;
+  border: 2px solid var(--danger);
+  border-radius: 22px;
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 900;
+}

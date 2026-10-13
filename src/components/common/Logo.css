@@ -1,0 +1,8 @@
+.logo {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mine);
+  transform: rotate(-6deg);
+}

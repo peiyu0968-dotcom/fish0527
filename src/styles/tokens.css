@@ -1,0 +1,80 @@
+/* 設計變數（docs/design.md 第 1 節）。淺色與深色各一組。 */
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #fff8ee;
+  --surface: #ffffff;
+  --ink: #2a2140;
+  --muted: #6f6685;
+  --line: #eadfcf;
+  --edge: #2a2140;
+  --mine: #5b3fd4;
+  --other: #ffffff;
+  --other-line: #eadfcf;
+  --chip: #f1eaff;
+  --cta: #ffc83d;
+  --cta-ink: #2a2140;
+  --danger: #c0281e;
+  --danger-bg: #ffe9e5;
+  --warn-bg: #ffe9a8;
+  --warn-ink: #5e4300;
+  --link: #5b3fd4;
+  --ok: #1fc8a0;
+  --disabled: #ede5d8;
+  --disabled-ink: #7a7088;
+  --blob1: #ffd9d3;
+  --blob2: #fff0bf;
+  --blob3: #d3f5eb;
+  --blob4: #d6ebff;
+  --scrim: rgba(20, 12, 35, 0.92);
+
+  --n1: #5b3fd4; --a1: #e5deff;
+  --n2: #c8402e; --a2: #ffd9d3;
+  --n3: #0e7a64; --a3: #d3f5eb;
+  --n4: #1f6fd1; --a4: #d6ebff;
+  --n5: #c2306f; --a5: #ffe0ee;
+  --n6: #a15a00; --a6: #fff0bf;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #17131f;
+  --surface: #231c33;
+  --ink: #f4f0ff;
+  --muted: #b3a9cc;
+  --line: #3a3050;
+  --edge: #6a58a0;
+  --mine: #7455f5;
+  --other: #2e2742;
+  --other-line: #3a3050;
+  --chip: #342a52;
+  --cta: #ffc83d;
+  --cta-ink: #2a2140;
+  --danger: #ffb4ad;
+  --danger-bg: #4a1f24;
+  --warn-bg: #4b3a00;
+  --warn-ink: #ffe08a;
+  --link: #b9a6ff;
+  --ok: #1fc8a0;
+  --disabled: #2e2742;
+  --disabled-ink: #8f85a8;
+  --blob1: #3d2230;
+  --blob2: #3b3220;
+  --blob3: #1e3a36;
+  --blob4: #1f3250;
+  --scrim: rgba(8, 4, 16, 0.94);
+
+  --n1: #b9a6ff; --a1: #3b2f66;
+  --n2: #ff9c8d; --a2: #5a2b27;
+  --n3: #5fe0c0; --a3: #1c4a41;
+  --n4: #7dbbff; --a4: #1e3f66;
+  --n5: #ff8fc0; --a5: #5a2442;
+  --n6: #ffcf6b; --a6: #5a4310;
+}
+
+:root {
+  --font: 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --shadow-card: 6px 6px 0 var(--edge);
+  --shadow-btn: 0 4px 0 var(--edge);
+  --focus: #3aa8ff;
+}

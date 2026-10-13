@@ -1,0 +1,285 @@
+.sys {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.sys span {
+  padding: 4px 12px;
+  background: var(--chip);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.msg {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+.msg--mine { justify-content: flex-end; }
+
+.msg__col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  max-width: 78%;
+}
+.msg--mine .msg__col { align-items: flex-end; max-width: 82%; }
+
+.msg__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.msg__name { font-size: 13px; font-weight: 900; }
+.msg__time { color: var(--muted); font-size: 11px; }
+.msg__edited { color: var(--muted); font-size: 11px; font-weight: 700; }
+
+.msg__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.bubble {
+  padding: 10px 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.msg--other .bubble--text {
+  background: var(--other);
+  border: 1px solid var(--other-line);
+  border-radius: 18px 18px 18px 6px;
+}
+.msg--mine .bubble--text {
+  background: var(--mine);
+  color: #fff;
+  border-radius: 18px 18px 6px 18px;
+}
+
+.bubble--deleted {
+  border: 1px dashed var(--muted);
+  border-radius: 18px 18px 18px 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+.msg--mine .bubble--deleted { border-radius: 18px 18px 6px 18px; }
+
+.bubble--hidden {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--chip);
+  border-radius: 18px 18px 18px 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.msg--mine .bubble--hidden { border-radius: 18px 18px 6px 18px; }
+.bubble--hidden svg { flex: none; }
+
+.link { color: var(--link); text-decoration: underline; }
+.link--mine { color: #ffe08a; }
+
+/* 圖片附件 */
+.att-image {
+  display: block;
+  width: 224px;
+  max-width: 100%;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  background: var(--other);
+  border: 2px solid var(--edge);
+  border-radius: 18px 18px 18px 6px;
+}
+.msg--mine .att-image { border-radius: 18px 18px 6px 18px; }
+.att-image img {
+  display: block;
+  width: 100%;
+  height: 128px;
+  object-fit: cover;
+  background: var(--chip);
+}
+.att-image__missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 128px;
+  background: var(--chip);
+  color: var(--muted);
+  font-size: 13px;
+}
+.att-image__cap {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 12px;
+  font-size: 13px;
+}
+.att-image__cap b { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.att-image__cap span { flex: none; color: var(--muted); }
+
+/* 檔案附件 */
+.att-file {
+  width: 250px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--other);
+  border: 1px solid var(--other-line);
+  border-radius: 18px 18px 18px 6px;
+  color: var(--ink);
+}
+.msg--mine .att-file { border-radius: 18px 18px 6px 18px; }
+.att-file__icon {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--a3);
+  border-radius: 12px;
+  color: var(--n3);
+}
+.att-file__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.att-file__info b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
+.att-file__info span { color: var(--muted); font-size: 12px; }
+.att-file__dl {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cta);
+  border: 2px solid var(--edge);
+  border-radius: 50%;
+  color: var(--cta-ink);
+}
+.att-file__dl--off {
+  background: var(--disabled);
+  border-color: var(--line);
+  color: var(--disabled-ink);
+}
+
+/* 操作列：電腦滑鼠移上去或鍵盤聚焦時出現；手機點一下訊息展開 */
+.msg__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.15s ease, opacity 0.15s ease;
+}
+.msg:hover .msg__actions,
+.msg:focus-within .msg__actions,
+.msg--open .msg__actions {
+  max-height: 48px;
+  opacity: 1;
+}
+.msg:focus-within .msg__actions,
+.msg--open .msg__actions { overflow: visible; }
+
+.chip-btn {
+  min-height: 32px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.chip-btn--danger { color: var(--danger); }
+.chip-btn:disabled { opacity: 0.6; }
+
+.link-btn {
+  min-height: 32px;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.msg__reported {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.msg__confirm { color: var(--muted); font-size: 13px; }
+
+.msg__error {
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* 編輯狀態 */
+.edit {
+  width: 290px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background: var(--surface);
+  border: 2px solid var(--mine);
+  border-radius: 18px;
+}
+.edit__label { color: var(--muted); font-size: 12px; font-weight: 700; }
+.edit__input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  background: var(--bg);
+  border: 2px solid var(--edge);
+  border-radius: 12px;
+  font-size: 16px;
+}
+.edit__actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+.pill-btn {
+  height: 44px;
+  padding: 0 18px;
+  background: var(--surface);
+  border: 2px solid var(--edge);
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.pill-btn--cta {
+  background: var(--cta);
+  color: var(--cta-ink);
+  font-weight: 900;
+}
+.pill-btn:disabled { opacity: 0.6; }

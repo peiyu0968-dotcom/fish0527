@@ -1,0 +1,195 @@
+.join {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.join__blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.join__blob--1 { left: -70px; top: -60px; width: 220px; height: 220px; background: var(--blob1); }
+.join__blob--2 { right: -50px; top: 90px; width: 150px; height: 150px; background: var(--blob2); }
+.join__blob--3 { left: -40px; bottom: 60px; width: 170px; height: 170px; background: var(--blob3); }
+.join__blob--4 { right: 24px; bottom: -50px; width: 190px; height: 190px; background: var(--blob4); }
+
+@media (min-width: 900px) {
+  .join__blob--1 { left: 6%; top: -90px; width: 320px; height: 320px; }
+  .join__blob--2 { right: 8%; top: 60px; width: 200px; height: 200px; }
+  .join__blob--3 { left: 10%; bottom: 40px; width: 240px; height: 240px; }
+  .join__blob--4 { right: 12%; bottom: -70px; width: 280px; height: 280px; }
+}
+
+.join__top {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 16px 0;
+}
+
+.join__center {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 8px 20px 24px;
+}
+
+.join__card {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px 24px 24px;
+  background: var(--surface);
+  border: 2px solid var(--edge);
+  border-radius: 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.join__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.join__mark {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  background: var(--mine);
+  transform: rotate(-6deg);
+}
+
+.join__dot {
+  position: absolute;
+  border: 2px solid var(--edge);
+  border-radius: 50%;
+}
+.join__dot--yellow { right: -8px; top: -8px; width: 22px; height: 22px; background: #ffc83d; }
+.join__dot--coral { left: -6px; bottom: -6px; width: 16px; height: 16px; background: #ff6b57; }
+
+.join__title {
+  margin: 8px 0 0;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.join__subtitle {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.join__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+.join__notice svg { flex: none; margin-top: 2px; }
+
+.join__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.join__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.join__label {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.join__count {
+  color: var(--muted);
+  font-size: 13px;
+}
+.join__count--error { color: var(--danger); }
+
+.join__input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  background: var(--bg);
+  border: 2px solid var(--edge);
+  border-radius: 16px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 500;
+}
+.join__input--error { border-color: var(--danger); }
+.join__input:disabled { opacity: 0.7; }
+
+.join__autofill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.join__error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.join__hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.join__submit {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.join__reminder {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 400px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--chip);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.join__reminder svg { flex: none; margin-top: 2px; }
