@@ -241,6 +241,10 @@ export class MockBackend implements ChatBackend, MockDebugControls {
     this.channel?.postMessage({ t: 'typing', key: this.clientKey, nickname: this.nickname } satisfies BroadcastMessage);
   }
 
+  leaveOnPageHide(): void {
+    void this.leaveRoom();
+  }
+
   retryConnection(): void {
     this.setConnection('reconnecting');
     this.later(1200, () => this.reconnect());

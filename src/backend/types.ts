@@ -10,6 +10,8 @@ export interface Attachment {
   mime: string;
   /** 下載／顯示用的網址。模擬版重新整理後，非圖片檔案的網址會失效（空字串）。 */
   url: string;
+  /** 檔案在儲存空間裡的路徑（只有 Supabase 版會有；送出訊息時要原樣帶回去）。 */
+  path?: string;
 }
 
 export interface Message {
@@ -42,6 +44,10 @@ export type ErrorCode =
   | 'ALREADY_DELETED'
   | 'OWN_MESSAGE'
   | 'ALREADY_REPORTED'
+  | 'NOT_FOUND'
+  | 'MESSAGE_HIDDEN'
+  | 'MESSAGE_TOO_LONG'
+  | 'ATTACHMENT_INVALID'
   | 'NETWORK';
 
 export class ChatError extends Error {
@@ -65,6 +71,10 @@ export const ERROR_TEXT: Record<ErrorCode, string> = {
   ALREADY_DELETED: '這則訊息已經刪除',
   OWN_MESSAGE: '不能檢舉自己的訊息',
   ALREADY_REPORTED: '你已經檢舉過這則訊息',
+  NOT_FOUND: '找不到這則訊息',
+  MESSAGE_HIDDEN: '這則訊息已被隱藏，無法修改',
+  MESSAGE_TOO_LONG: '訊息太長了，請分成幾則送出',
+  ATTACHMENT_INVALID: '附件無法使用，請重新選擇',
   NETWORK: '網路不穩，請稍後再試',
 };
 
@@ -76,6 +86,8 @@ export interface BackendEvents {
   'presence.changed': OnlineUser[];
   'typing.started': string; // 輸入者的代號
   'connection.changed': ConnectionState;
+  /** 在聊天室裡被迫離開（例如斷線太久、代號已被別人佔用），畫面要回到輸入代號並說明原因。 */
+  'session.ended': { reason: ErrorCode };
 }
 
 export type EventName = keyof BackendEvents;
@@ -114,5 +126,7 @@ export interface ChatBackend {
   uploadFile(file: File, onProgress?: (percent: number) => void): Promise<Attachment>;
   notifyTyping(): void;
   retryConnection(): void;
+  /** 網頁即將關閉時呼叫：同步、盡力通知「我要離開了」，不等結果。 */
+  leaveOnPageHide(): void;
   subscribe<E extends EventName>(event: E, handler: (payload: BackendEvents[E]) => void): Unsubscribe;
 }

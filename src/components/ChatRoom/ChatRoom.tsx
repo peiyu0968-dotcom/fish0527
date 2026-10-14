@@ -23,7 +23,8 @@ interface ChatRoomProps {
   initialOnline: OnlineUser[];
   theme: Theme;
   onToggleTheme: () => void;
-  onLeft: () => void;
+  /** 離開聊天室（自己按離開，或被迫離開並附上原因）。 */
+  onLeft: (notice?: string) => void;
 }
 
 export function ChatRoom({ backend, nickname, initialOnline, theme, onToggleTheme, onLeft }: ChatRoomProps) {
@@ -54,12 +55,23 @@ export function ChatRoom({ backend, nickname, initialOnline, theme, onToggleThem
 
   // 直接關掉網頁也算離開（盡力通知，來不及時由後端逾時判定）。
   useEffect(() => {
-    const onHide = () => {
-      void backend.leaveRoom();
-    };
+    const onHide = () => backend.leaveOnPageHide();
     window.addEventListener('pagehide', onHide);
     return () => window.removeEventListener('pagehide', onHide);
   }, [backend]);
+
+  // 斷線太久、代號被別人佔用等原因被迫離開：回到輸入代號畫面並說明原因。
+  useEffect(
+    () =>
+      backend.subscribe('session.ended', ({ reason }) => {
+        onLeft(
+          reason === 'NICKNAME_TAKEN'
+            ? '你離線太久，代號已被別人使用，請換一個代號再進入。'
+            : ERROR_TEXT[reason],
+        );
+      }),
+    [backend, onLeft],
+  );
 
   const showToast = useCallback((text: string) => {
     setToast(text);

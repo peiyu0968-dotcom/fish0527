@@ -6,7 +6,7 @@ import { DebugPanel } from './components/DebugPanel/DebugPanel';
 import { JoinScreen } from './components/JoinScreen/JoinScreen';
 import { useTheme } from './hooks/useTheme';
 
-type Stage = { name: 'join' } | { name: 'room'; nickname: string; online: OnlineUser[] };
+type Stage = { name: 'join'; notice?: string } | { name: 'room'; nickname: string; online: OnlineUser[] };
 
 /** 只有兩個畫面：輸入代號、聊天室。用一個狀態切換，不需要網址路由。 */
 export default function App() {
@@ -21,6 +21,7 @@ export default function App() {
           backend={backend}
           theme={theme}
           onToggleTheme={toggle}
+          notice={stage.notice}
           onJoined={(nickname, online) => setStage({ name: 'room', nickname, online })}
         />
       ) : (
@@ -30,7 +31,7 @@ export default function App() {
           initialOnline={stage.online}
           theme={theme}
           onToggleTheme={toggle}
-          onLeft={() => setStage({ name: 'join' })}
+          onLeft={(notice) => setStage({ name: 'join', notice })}
         />
       )}
       {debug && <DebugPanel controls={debug} />}
